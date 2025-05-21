@@ -92,12 +92,9 @@
 </div>
 <nav class="mt-4">
 <a class="sidebar-link active" data-target="overview">Overview</a>
-<!-- <a class="sidebar-link" data-target="trends">Visitor Trends</a> -->
 <a class="sidebar-link" data-target="heatmaps">Peak Day Analysis</a>
 <a class="sidebar-link" data-target="zones">Zone Analysis</a>
-<!-- <a class="sidebar-link" data-target="settings">Settings</a> -->
 <hr class="border-gray-700 my-4"/>
-<!-- <a class="sidebar-link text-sm hover:text-orange-500" href="login.html">Logout (Demo)</a> -->
 </nav>
 </aside>
 <main class="main-content flex-1 overflow-y-auto p-6 md:p-8 lg:p-10">
@@ -122,6 +119,12 @@
 </div>
 </div>
 </div>
+<!-- <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <div class="card">
+    <h3 class="text-lg font-semibold mb-4 text-gray-800">Customers Detected At Cashier</h3>
+    <div class="chart-container" id="pos-customer" style="height: 400px;"></div>
+    </div>
+    </div> -->
 <div class="content-section" id="content-trends">
 <h2 class="text-2xl font-semibold text-white mb-6">Visitor Trends</h2>
 <div class="grid grid-cols-1 lg:grid-cols-1 gap-6 mb-8"> <div class="card">
@@ -153,9 +156,9 @@
 <h2 class="text-2xl font-semibold text-white mb-6">Zone Analysis</h2>
 <div class="card">
     <h3 class="text-lg font-semibold mb-4 text-gray-800">Heatmap of zones </h3>
-    <div class="carousel-container" style="position: relative; width: 100%; max-width: 100%; overflow: hidden; margin: auto; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+    <!-- <div class="carousel-container" style="position: relative; width: 100%; max-width: 100%; overflow: hidden; margin: auto; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
       <div class="carousel-track" id="carouselTrack" style="display: flex; transition: transform 0.5s ease-in-out;">
-        <img class="carousel-image" src="heatmaps/cam2-2024-12-15.jpg" alt="Image 1" style="min-width: 50%; height: 100%; object-fit: cover; display: block;">
+        <img class="carousel-image" src="epitex heatmap/cam2-combined-year-2024-week-51.jpg" alt="Image 1" style="min-width: 50%; height: 100%; object-fit: cover; display: block;">
         <img class="carousel-image" src="heatmaps/cam4-2024-12-15.jpg" alt="Image 2" style="min-width: 50%; height: 100%; object-fit: cover; display: block;">
         <img class="carousel-image" src="heatmaps/cam2-2024-12-17.jpg" alt="Image 3" style="min-width: 50%; height: auto; display: block;">
         <img class="carousel-image" src="heatmaps/cam4-2024-12-17.jpg" alt="Image 4" style="min-width: 50%; height: auto; display: block;">
@@ -163,64 +166,6 @@
         <img class="carousel-image" src="heatmaps/cam4-2024-12-18.jpg" alt="Image 6" style="min-width: 50%; height: auto; display: block;">
         <img class="carousel-image" src="heatmaps/cam2-2024-12-19.jpg" alt="Image 7" style="min-width: 50%; height: auto; display: block;">
         <img class="carousel-image" src="heatmaps/cam4-2024-12-19.jpg" alt="Image 8" style="min-width: 50%; height: auto; display: block;">
-        <img class="carousel-image" src="heatmaps/cam2-2024-12-20.jpg" alt="Image 9" style="min-width: 50%; height: auto; display: block;">
-        <img class="carousel-image" src="heatmaps/cam4-2024-12-20.jpg" alt="Image 10" style="min-width: 50%; height: auto; display: block;">
-        <img class="carousel-image" src="heatmaps/cam2-2024-12-21.jpg" alt="Image 11" style="min-width: 50%; height: auto; display: block;">
-        <img class="carousel-image" src="heatmaps/cam4-2024-12-21.jpg" alt="Image 12" style="min-width: 50%; height: auto; display: block;">
-        <img class="carousel-image" src="heatmaps/cam2-2024-12-22.jpg" alt="Image 13" style="min-width: 50%; height: auto; display: block;">
-        <img class="carousel-image" src="heatmaps/cam4-2024-12-22.jpg" alt="Image 14" style="min-width: 50%; height: auto; display: block;">
-        <img class="carousel-image" src="heatmaps/cam2-2024-12-23.jpg" alt="Image 15" style="min-width: 50%; height: auto; display: block;">
-        <img class="carousel-image" src="heatmaps/cam4-2024-12-23.jpg" alt="Image 16" style="min-width: 50%; height: auto; display: block;">
-        <img class="carousel-image" src="heatmaps/cam2-2024-12-24.jpg" alt="Image 17" style="min-width: 50%; height: auto; display: block;">
-        <img class="carousel-image" src="heatmaps/cam4-2024-12-24.jpg" alt="Image 18" style="min-width: 50%; height: auto; display: block;">
-        <img class="carousel-image" src="heatmaps/cam2-2024-12-25.jpg" alt="Image 19" style="min-width: 50%; height: auto; display: block;">
-        <img class="carousel-image" src="heatmaps/cam4-2024-12-25.jpg" alt="Image 20" style="min-width: 50%; height: auto; display: block;">
-        <img class="carousel-image" src="heatmaps/cam2-2024-12-26.jpg" alt="Image 21" style="min-width: 50%; height: auto; display: block;">
-        <img class="carousel-image" src="heatmaps/cam4-2024-12-26.jpg" alt="Image 22" style="min-width: 50%; height: auto; display: block;">
-        <img class="carousel-image" src="heatmaps/cam2-2024-12-27.jpg" alt="Image 23" style="min-width: 50%; height: auto; display: block;">
-        <img class="carousel-image" src="heatmaps/cam4-2024-12-27.jpg" alt="Image 24" style="min-width: 50%; height: auto; display: block;">
-        <img class="carousel-image" src="heatmaps/cam2-2024-12-28.jpg" alt="Image 25" style="min-width: 50%; height: auto; display: block;">
-        <img class="carousel-image" src="heatmaps/cam4-2024-12-28.jpg" alt="Image 26" style="min-width: 50%; height: auto; display: block;">
-        <img class="carousel-image" src="heatmaps/cam2-2024-12-29.jpg" alt="Image 27" style="min-width: 50%; height: auto; display: block;">
-        <img class="carousel-image" src="heatmaps/cam4-2024-12-29.jpg" alt="Image 28" style="min-width: 50%; height: auto; display: block;">
-        <img class="carousel-image" src="heatmaps/cam2-2024-12-30.jpg" alt="Image 29" style="min-width: 50%; height: auto; display: block;">
-        <img class="carousel-image" src="heatmaps/cam4-2024-12-30.jpg" alt="Image 30" style="min-width: 50%; height: auto; display: block;">
-        <img class="carousel-image" src="heatmaps/cam2-2024-12-31.jpg" alt="Image 31" style="min-width: 50%; height: auto; display: block;">
-        <img class="carousel-image" src="heatmaps/cam4-2024-12-31.jpg" alt="Image 32" style="min-width: 50%; height: auto; display: block;">
-        <img class="carousel-image" src="heatmaps/cam2-2025-01-01.jpg" alt="Image 33" style="min-width: 50%; height: auto; display: block;">
-        <img class="carousel-image" src="heatmaps/cam4-2025-01-01.jpg" alt="Image 34" style="min-width: 50%; height: auto; display: block;">
-        <img class="carousel-image" src="heatmaps/cam2-2025-01-02.jpg" alt="Image 35" style="min-width: 50%; height: auto; display: block;">
-        <img class="carousel-image" src="heatmaps/cam4-2025-01-02.jpg" alt="Image 36" style="min-width: 50%; height: auto; display: block;">
-        <img class="carousel-image" src="heatmaps/cam2-2025-01-03.jpg" alt="Image 37" style="min-width: 50%; height: auto; display: block;">
-        <img class="carousel-image" src="heatmaps/cam4-2025-01-03.jpg" alt="Image 38" style="min-width: 50%; height: auto; display: block;">
-        <img class="carousel-image" src="heatmaps/cam2-2025-01-04.jpg" alt="Image 39" style="min-width: 50%; height: auto; display: block;">
-        <img class="carousel-image" src="heatmaps/cam4-2025-01-04.jpg" alt="Image 40" style="min-width: 50%; height: auto; display: block;">
-        <img class="carousel-image" src="heatmaps/cam2-2025-01-05.jpg" alt="Image 41" style="min-width: 50%; height: auto; display: block;">
-        <img class="carousel-image" src="heatmaps/cam4-2025-01-05.jpg" alt="Image 42" style="min-width: 50%; height: auto; display: block;">
-        <img class="carousel-image" src="heatmaps/cam2-2025-01-06.jpg" alt="Image 43" style="min-width: 50%; height: auto; display: block;">
-        <img class="carousel-image" src="heatmaps/cam4-2025-01-06.jpg" alt="Image 44" style="min-width: 50%; height: auto; display: block;">
-        <img class="carousel-image" src="heatmaps/cam2-2025-01-07.jpg" alt="Image 45" style="min-width: 50%; height: auto; display: block;">
-        <img class="carousel-image" src="heatmaps/cam4-2025-01-07.jpg" alt="Image 46" style="min-width: 50%; height: auto; display: block;">
-        <img class="carousel-image" src="heatmaps/cam2-2025-01-08.jpg" alt="Image 47" style="min-width: 50%; height: auto; display: block;">
-        <img class="carousel-image" src="heatmaps/cam4-2025-01-08.jpg" alt="Image 48" style="min-width: 50%; height: auto; display: block;">
-        <img class="carousel-image" src="heatmaps/cam2-2025-01-09.jpg" alt="Image 49" style="min-width: 50%; height: auto; display: block;">
-        <img class="carousel-image" src="heatmaps/cam4-2025-01-09.jpg" alt="Image 50" style="min-width: 50%; height: auto; display: block;">
-        <img class="carousel-image" src="heatmaps/cam2-2025-01-10.jpg" alt="Image 51" style="min-width: 50%; height: auto; display: block;">
-        <img class="carousel-image" src="heatmaps/cam4-2025-01-10.jpg" alt="Image 52" style="min-width: 50%; height: auto; display: block;">
-        <img class="carousel-image" src="heatmaps/cam2-2025-01-11.jpg" alt="Image 53" style="min-width: 50%; height: auto; display: block;">
-        <img class="carousel-image" src="heatmaps/cam4-2025-01-11.jpg" alt="Image 54" style="min-width: 50%; height: auto; display: block;">
-        <img class="carousel-image" src="heatmaps/cam2-2025-01-12.jpg" alt="Image 55" style="min-width: 50%; height: auto; display: block;">
-        <img class="carousel-image" src="heatmaps/cam4-2025-01-12.jpg" alt="Image 56" style="min-width: 50%; height: auto; display: block;">
-        <img class="carousel-image" src="heatmaps/cam2-2025-01-13.jpg" alt="Image 57" style="min-width: 50%; height: auto; display: block;">
-        <img class="carousel-image" src="heatmaps/cam4-2025-01-13.jpg" alt="Image 58" style="min-width: 50%; height: auto; display: block;">
-        <img class="carousel-image" src="heatmaps/cam2-2025-01-14.jpg" alt="Image 59" style="min-width: 50%; height: auto; display: block;">
-        <img class="carousel-image" src="heatmaps/cam4-2025-01-14.jpg" alt="Image 60" style="min-width: 50%; height: auto; display: block;">
-        <img class="carousel-image" src="heatmaps/cam2-2025-01-15.jpg" alt="Image 61" style="min-width: 50%; height: auto; display: block;">
-        <img class="carousel-image" src="heatmaps/cam4-2025-01-15.jpg" alt="Image 62" style="min-width: 50%; height: auto; display: block;">
-        <img class="carousel-image" src="heatmaps/cam2-2025-01-16.jpg" alt="Image 63" style="min-width: 50%; height: auto; display: block;">
-        <img class="carousel-image" src="heatmaps/cam4-2025-01-16.jpg" alt="Image 64" style="min-width: 50%; height: auto; display: block;">
-        <img class="carousel-image" src="heatmaps/cam2-2025-01-17.jpg" alt="Image 65" style="min-width: 50%; height: auto; display: block;">
-        <img class="carousel-image" src="heatmaps/cam4-2025-01-17.jpg" alt="Image 66" style="min-width: 50%; height: auto; display: block;">
       </div>
       <div style="display: flex;">
         <div style="flex: 1; display: flex; align-items: center; justify-content: center;">
@@ -232,8 +177,47 @@
       </div>
       <button class="carousel-button prev-btn" onclick="moveSlide(-1)" style="position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: white; border: none; padding: 10px 15px; font-size: 18px; cursor: pointer; z-index: 10; border-radius: 5px; left: 10px;">❮</button>
       <button class="carousel-button next-btn" onclick="moveSlide(1)" style="position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: white; border: none; padding: 10px 15px; font-size: 18px; cursor: pointer; z-index: 10; border-radius: 5px; right: 10px;">❯</button>
+    </div> -->
+     <!-- Week 51 -->
+     <div style="justify-content: center;">
+        <h3>15 December 2024 - 21 December 2024</h3>
     </div>
-  </div>
+    <div style="display: flex; width: 100%; justify-content: center; padding-bottom: 20px; padding-top: 10px;">
+        <img src="epitex heatmap/cam2-combined-year-2024-week-51.jpg" style="width: 50%; height: auto;" >
+        <img src="epitex heatmap/cam4-combined-year-2024-week-51.jpg" style="width: 50%; height: auto;" >
+    </div>
+    <div style="justify-content: center;">
+        <h3>21 December 2024 - 28 December 2024</h3>
+    </div>
+    <!-- Week 52 -->
+    <div style="display: flex; width: 100%; justify-content: center; padding-bottom: 20px; padding-top: 10px;">
+        <img src="epitex heatmap/cam2-combined-year-2024-week-52.jpg" style="width: 50%; height: auto;">
+        <img src="epitex heatmap/cam4-combined-year-2024-week-52.jpg" style="width: 50%; height: auto;">
+    </div>
+    <div style="justify-content: center;">
+        <h3>29 December 2024 - 4 January 2025</h3>
+    </div>
+    <!-- Week 1 -->
+    <div style="display: flex; width: 100%; justify-content: center; padding-bottom: 20px; padding-top: 10px;">
+        <img src="epitex heatmap/cam2-combined-year-2025-week-1.jpg" style="width: 50%; height: auto;">
+        <img src="epitex heatmap/cam4-combined-year-2025-week-1.jpg" style="width: 50%; height: auto;">
+    </div>
+    <div style="justify-content: center;">
+        <h3>5 January 2024 - 11 January 2025</h3>
+    </div>
+    <!-- Week 2 -->
+    <div style="display: flex; width: 100%; justify-content: center; padding-bottom: 20px; padding-top: 10px;">
+        <img src="epitex heatmap/cam2-combined-year-2025-week-2.jpg" style="width: 50%; height: auto;">
+        <img src="epitex heatmap/cam4-combined-year-2025-week-2.jpg" style="width: 50%; height: auto;">
+    </div>
+    <div style="justify-content: center;">
+        <h3>12 January 2024 - 18 January 2025</h3>
+    </div>
+    <!-- Week 3 -->
+    <div style="display: flex; width: 100%; justify-content: center; padding-bottom: 20px; padding-top: 10px;">
+        <img src="epitex heatmap/cam2-combined-year-2025-week-3.jpg" style="width: 50%; height: auto;">
+        <img src="epitex heatmap/cam4-combined-year-2025-week-3.jpg" style="width: 50%; height: auto;">
+    </div>
 </div>
 <div class="content-section" id="content-settings">
 <h2 class="text-2xl font-semibold text-white mb-6">Settings</h2>
@@ -298,8 +282,7 @@
 
         // --- Chart Data and Options (Using Theme Colors) ---
         function renderCharts() {
-    const aggregatedDayData = [[{'Date': '2024-12-15', 'Camera': 2, 'Total Count': 1966, 'Total Males': 1117, 'Total Females': 746, 'Unknown Gender': 103, 'Total Kids': 71, 'Total Teenagers': 979, 'Total Adults': 799, 'Total Older Adults': 40, 'Total Unknown Ages': 77, 'Total Chinese': 1837, 'Total Indian': 7, 'Total Malay': 12, 'Total Others': 110}], [{'Date': '2024-12-17', 'Camera': 2, 'Total Count': 1310, 'Total Males': 660, 'Total Females': 573, 'Unknown Gender': 77, 'Total Kids': 42, 'Total Teenagers': 690, 'Total Adults': 499, 'Total Older Adults': 26, 'Total Unknown Ages': 53, 'Total Chinese': 1218, 'Total Indian': 5, 'Total Malay': 10, 'Total Others': 77}], [{'Date': '2024-12-18', 'Camera': 2, 'Total Count': 1587, 'Total Males': 962, 'Total Females': 533, 'Unknown Gender': 92, 'Total Kids': 15, 'Total Teenagers': 721, 'Total Adults': 639, 'Total Older Adults': 143, 'Total Unknown Ages': 69, 'Total Chinese': 1462, 'Total Indian': 17, 'Total Malay': 12, 'Total Others': 96}], [{'Date': '2024-12-19', 'Camera': 2, 'Total Count': 1553, 'Total Males': 981, 'Total Females': 517, 'Unknown Gender': 55, 'Total Kids': 35, 'Total Teenagers': 927, 'Total Adults': 513, 'Total Older Adults': 29, 'Total Unknown Ages': 49, 'Total Chinese': 1486, 'Total Indian': 3, 'Total Malay': 9, 'Total Others': 55}], [{'Date': '2024-12-20', 'Camera': 2, 'Total Count': 2133, 'Total Males': 1052, 'Total Females': 1012, 'Unknown Gender': 69, 'Total Kids': 55, 'Total Teenagers': 1042, 'Total Adults': 912, 'Total Older Adults': 56, 'Total Unknown Ages': 68, 'Total Chinese': 2005, 'Total Indian': 12, 'Total Malay': 46, 'Total Others': 70}], [{'Date': '2024-12-21', 'Camera': 2, 'Total Count': 2160, 'Total Males': 1205, 'Total Females': 894, 'Unknown Gender': 61, 'Total Kids': 176, 'Total Teenagers': 1110, 'Total Adults': 748, 'Total Older Adults': 68, 'Total Unknown Ages': 58, 'Total Chinese': 2031, 'Total Indian': 13, 'Total Malay': 54, 'Total Others': 62}], [{'Date': '2024-12-22', 'Camera': 2, 'Total Count': 1643, 'Total Males': 809, 'Total Females': 738, 'Unknown Gender': 96, 'Total Kids': 81, 'Total Teenagers': 889, 'Total Adults': 544, 'Total Older Adults': 35, 'Total Unknown Ages': 94, 'Total Chinese': 1510, 'Total Indian': 8, 'Total Malay': 27, 'Total Others': 98}], [{'Date': '2024-12-23', 'Camera': 2, 'Total Count': 3061, 'Total Males': 1954, 'Total Females': 990, 'Unknown Gender': 117, 'Total Kids': 37, 'Total Teenagers': 1562, 'Total Adults': 1309, 'Total Older Adults': 38, 'Total Unknown Ages': 115, 'Total Chinese': 2798, 'Total Indian': 96, 'Total Malay': 49, 'Total Others': 118}], [{'Date': '2024-12-24', 'Camera': 2, 'Total Count': 1892, 'Total Males': 1370, 'Total Females': 470, 'Unknown Gender': 52, 'Total Kids': 38, 'Total Teenagers': 934, 'Total Adults': 801, 'Total Older Adults': 68, 'Total Unknown Ages': 51, 'Total Chinese': 1742, 'Total Indian': 56, 'Total Malay': 41, 'Total Others': 53}], [{'Date': '2024-12-25', 'Camera': 2, 'Total Count': 2142, 'Total Males': 981, 'Total Females': 1085, 'Unknown Gender': 76, 'Total Kids': 69, 'Total Teenagers': 1160, 'Total Adults': 794, 'Total Older Adults': 42, 'Total Unknown Ages': 77, 'Total Chinese': 2022, 'Total Indian': 13, 'Total Malay': 29, 'Total Others': 78}], [{'Date': '2024-12-26', 'Camera': 2, 'Total Count': 1533, 'Total Males': 675, 'Total Females': 774, 'Unknown Gender': 84, 'Total Kids': 22, 'Total Teenagers': 753, 'Total Adults': 647, 'Total Older Adults': 44, 'Total Unknown Ages': 67, 'Total Chinese': 1417, 'Total Indian': 12, 'Total Malay': 20, 'Total Others': 84}], [{'Date': '2024-12-27', 'Camera': 2, 'Total Count': 1841, 'Total Males': 992, 'Total Females': 771, 'Unknown Gender': 78, 'Total Kids': 107, 'Total Teenagers': 1116, 'Total Adults': 507, 'Total Older Adults': 38, 'Total Unknown Ages': 73, 'Total Chinese': 1725, 'Total Indian': 6, 'Total Malay': 28, 'Total Others': 82}], [{'Date': '2024-12-28', 'Camera': 2, 'Total Count': 1828, 'Total Males': 923, 'Total Females': 825, 'Unknown Gender': 80, 'Total Kids': 54, 'Total Teenagers': 1001, 'Total Adults': 650, 'Total Older Adults': 41, 'Total Unknown Ages': 82, 'Total Chinese': 1700, 'Total Indian': 18, 'Total Malay': 26, 'Total Others': 84}], [{'Date': '2024-12-29', 'Camera': 2, 'Total Count': 2340, 'Total Males': 1455, 'Total Females': 788, 'Unknown Gender': 97, 'Total Kids': 86, 'Total Teenagers': 1360, 'Total Adults': 757, 'Total Older Adults': 40, 'Total Unknown Ages': 97, 'Total Chinese': 2171, 'Total Indian': 33, 'Total Malay': 33, 'Total Others': 103}], [{'Date': '2024-12-30', 'Camera': 2, 'Total Count': 2366, 'Total Males': 1044, 'Total Females': 1209, 'Unknown Gender': 113, 'Total Kids': 52, 'Total Teenagers': 1268, 'Total Adults': 882, 'Total Older Adults': 54, 'Total Unknown Ages': 110, 'Total Chinese': 2223, 'Total Indian': 11, 'Total Malay': 19, 'Total Others': 113}], [{'Date': '2024-12-31', 'Camera': 2, 'Total Count': 1641, 'Total Males': 1012, 'Total Females': 560, 'Unknown Gender': 69, 'Total Kids': 40, 'Total Teenagers': 893, 'Total Adults': 598, 'Total Older Adults': 43, 'Total Unknown Ages': 67, 'Total Chinese': 1519, 'Total Indian': 25, 'Total Malay': 26, 'Total Others': 71}], [{'Date': '2025-01-01', 'Camera': 2, 'Total Count': 1872, 'Total Males': 908, 'Total Females': 877, 'Unknown Gender': 87, 'Total Kids': 84, 'Total Teenagers': 1022, 'Total Adults': 624, 'Total Older Adults': 52, 'Total Unknown Ages': 90, 'Total Chinese': 1718, 'Total Indian': 26, 'Total Malay': 37, 'Total Others': 91}], [{'Date': '2025-01-02', 'Camera': 2, 'Total Count': 1463, 'Total Males': 741, 'Total Females': 680, 'Unknown Gender': 42, 'Total Kids': 42, 'Total Teenagers': 788, 'Total Adults': 546, 'Total Older Adults': 45, 'Total Unknown Ages': 42, 'Total Chinese': 1382, 'Total Indian': 12, 'Total Malay': 23, 'Total Others': 46}], [{'Date': '2025-01-03', 'Camera': 2, 'Total Count': 1478, 'Total Males': 779, 'Total Females': 658, 'Unknown Gender': 41, 'Total Kids': 17, 'Total Teenagers': 759, 'Total Adults': 611, 'Total Older Adults': 51, 'Total Unknown Ages': 40, 'Total Chinese': 1404, 'Total Indian': 10, 'Total Malay': 22, 'Total Others': 42}], [{'Date': '2025-01-04', 'Camera': 2, 'Total Count': 1689, 'Total Males': 1063, 'Total Females': 589, 'Unknown Gender': 37, 'Total Kids': 91, 'Total Teenagers': 943, 'Total Adults': 585, 'Total Older Adults': 34, 'Total Unknown Ages': 36, 'Total Chinese': 1584, 'Total Indian': 31, 'Total Malay': 34, 'Total Others': 40}], [{'Date': '2025-01-05', 'Camera': 2, 'Total Count': 1953, 'Total Males': 1384, 'Total Females': 501, 'Unknown Gender': 68, 'Total Kids': 114, 'Total Teenagers': 965, 'Total Adults': 758, 'Total Older Adults': 52, 'Total Unknown Ages': 64, 'Total Chinese': 1823, 'Total Indian': 13, 'Total Malay': 34, 'Total Others': 83}], [{'Date': '2025-01-06', 'Camera': 2, 'Total Count': 1118, 'Total Males': 738, 'Total Females': 332, 'Unknown Gender': 48, 'Total Kids': 18, 'Total Teenagers': 634, 'Total Adults': 401, 'Total Older Adults': 17, 'Total Unknown Ages': 48, 'Total Chinese': 1037, 'Total Indian': 8, 'Total Malay': 23, 'Total Others': 50}], [{'Date': '2025-01-07', 'Camera': 2, 'Total Count': 1022, 'Total Males': 506, 'Total Females': 468, 'Unknown Gender': 48, 'Total Kids': 48, 'Total Teenagers': 498, 'Total Adults': 412, 'Total Older Adults': 18, 'Total Unknown Ages': 46, 'Total Chinese': 961, 'Total Indian': 3, 'Total Malay': 8, 'Total Others': 50}], [{'Date': '2025-01-08', 'Camera': 2, 'Total Count': 962, 'Total Males': 483, 'Total Females': 443, 'Unknown Gender': 36, 'Total Kids': 18, 'Total Teenagers': 491, 'Total Adults': 381, 'Total Older Adults': 32, 'Total Unknown Ages': 40, 'Total Chinese': 903, 'Total Indian': 12, 'Total Malay': 9, 'Total Others': 38}], [{'Date': '2025-01-09', 'Camera': 2, 'Total Count': 721, 'Total Males': 315, 'Total Females': 381, 'Unknown Gender': 25, 'Total Kids': 11, 'Total Teenagers': 348, 'Total Adults': 312, 'Total Older Adults': 25, 'Total Unknown Ages': 25, 'Total Chinese': 687, 'Total Indian': 1, 'Total Malay': 8, 'Total Others': 25}], [{'Date': '2025-01-10', 'Camera': 2, 'Total Count': 1200, 'Total Males': 622, 'Total Females': 536, 'Unknown Gender': 42, 'Total Kids': 24, 'Total Teenagers': 604, 'Total Adults': 482, 'Total Older Adults': 45, 'Total Unknown Ages': 45, 'Total Chinese': 1132, 'Total Indian': 4, 'Total Malay': 16, 'Total Others': 48}], [{'Date': '2025-01-11', 'Camera': 2, 'Total Count': 2197, 'Total Males': 1101, 'Total Females': 1027, 'Unknown Gender': 69, 'Total Kids': 115, 'Total Teenagers': 1128, 'Total Adults': 838, 'Total Older Adults': 49, 'Total Unknown Ages': 67, 'Total Chinese': 2058, 'Total Indian': 15, 'Total Malay': 54, 'Total Others': 70}], [{'Date': '2025-01-12', 'Camera': 2, 'Total Count': 1807, 'Total Males': 935, 'Total Females': 829, 'Unknown Gender': 43, 'Total Kids': 57, 'Total Teenagers': 827, 'Total Adults': 818, 'Total Older Adults': 61, 'Total Unknown Ages': 44, 'Total Chinese': 1699, 'Total Indian': 13, 'Total Malay': 50, 'Total Others': 45}], [{'Date': '2025-01-13', 'Camera': 2, 'Total Count': 818, 'Total Males': 501, 'Total Females': 266, 'Unknown Gender': 51, 'Total Kids': 14, 'Total Teenagers': 416, 'Total Adults': 323, 'Total Older Adults': 17, 'Total Unknown Ages': 48, 'Total Chinese': 757, 'Total Indian': 3, 'Total Malay': 5, 'Total Others': 53}], [{'Date': '2025-01-14', 'Camera': 2, 'Total Count': 1116, 'Total Males': 675, 'Total Females': 399, 'Unknown Gender': 42, 'Total Kids': 21, 'Total Teenagers': 567, 'Total Adults': 460, 'Total Older Adults': 28, 'Total Unknown Ages': 40, 'Total Chinese': 1062, 'Total Indian': 0, 'Total Malay': 11, 'Total Others': 43}], [{'Date': '2025-01-15', 'Camera': 2, 'Total Count': 1234, 'Total Males': 521, 'Total Females': 669, 'Unknown Gender': 44, 'Total Kids': 37, 'Total Teenagers': 568, 'Total Adults': 548, 'Total Older Adults': 35, 'Total Unknown Ages': 46, 'Total Chinese': 1161, 'Total Indian': 12, 'Total Malay': 17, 'Total Others': 44}], [{'Date': '2025-01-16', 'Camera': 2, 'Total Count': 595, 'Total Males': 310, 'Total Females': 276, 'Unknown Gender': 9, 'Total Kids': 18, 'Total Teenagers': 305, 'Total Adults': 243, 'Total Older Adults': 19, 'Total Unknown Ages': 10, 'Total Chinese': 579, 'Total Indian': 0, 'Total Malay': 6, 'Total Others': 10}], [{'Date': '2025-01-17', 'Camera': 2, 'Total Count': 838, 'Total Males': 408, 'Total Females': 409, 'Unknown Gender': 21, 'Total Kids': 20, 'Total Teenagers': 396, 'Total Adults': 379, 'Total Older Adults': 22, 'Total Unknown Ages': 21, 'Total Chinese': 793, 'Total Indian': 12, 'Total Malay': 11, 'Total Others': 22}]];
-    
+    const aggregatedDayData = [[{'Range': '15-Dec to 21-Dec', 'Camera': 12, 'Total Count': 10709, 'Total Males': 5977, 'Total Females': 4275, 'Unknown Gender': 457, 'Total Kids': 394, 'Total Teenagers': 5469, 'Total Adults': 4110, 'Total Older Adults': 362, 'Total Unknown Ages': 374, 'Total Chinese': 10039, 'Total Indian': 57, 'Total Malay': 143, 'Total Others': 470, 'Customer_Conversion': 211}], [{'Range': '22-Dec to 28-Dec', 'Camera': 14, 'Total Count': 13940, 'Total Males': 7704, 'Total Females': 5653, 'Unknown Gender': 583, 'Total Kids': 408, 'Total Teenagers': 7415, 'Total Adults': 5252, 'Total Older Adults': 306, 'Total Unknown Ages': 559, 'Total Chinese': 12914, 'Total Indian': 209, 'Total Malay': 220, 'Total Others': 597, 'Customer_Conversion': 232}], [{'Range': '29-Dec to 04-Jan', 'Camera': 14, 'Total Count': 12849, 'Total Males': 7002, 'Total Females': 5361, 'Unknown Gender': 486, 'Total Kids': 412, 'Total Teenagers': 7033, 'Total Adults': 4603, 'Total Older Adults': 319, 'Total Unknown Ages': 482, 'Total Chinese': 12001, 'Total Indian': 148, 'Total Malay': 194, 'Total Others': 506, 'Customer_Conversion': 277}], [{'Range': '05-Jan to 11-Jan', 'Camera': 14, 'Total Count': 9173, 'Total Males': 5149, 'Total Females': 3688, 'Unknown Gender': 336, 'Total Kids': 348, 'Total Teenagers': 4668, 'Total Adults': 3584, 'Total Older Adults': 238, 'Total Unknown Ages': 335, 'Total Chinese': 8601, 'Total Indian': 56, 'Total Malay': 152, 'Total Others': 364, 'Customer_Conversion': 226}], [{'Range': '12-Jan to 17-Jan', 'Camera': 12, 'Total Count': 6408, 'Total Males': 3350, 'Total Females': 2848, 'Unknown Gender': 210, 'Total Kids': 167, 'Total Teenagers': 3079, 'Total Adults': 2771, 'Total Older Adults': 182, 'Total Unknown Ages': 209, 'Total Chinese': 6051, 'Total Indian': 40, 'Total Malay': 100, 'Total Others': 217, 'Customer_Conversion': 159}]];
             // Sample data (same as before)
             // add the day insights here in a three dimesional array from day_level_insights.csv
             // add they hour insights here in a three dimensional array from hour_level_insights.csv
@@ -318,14 +301,21 @@
            // Assume each group in aggregatedDayData has just one row per date
             const flatData = aggregatedDayData.map(group => group[0]); // flatten to 1D array of objects
 
-            const dates = flatData.map(entry => entry["Date"]);
+            const dates = flatData.map(entry => entry['Range']);
             const counts = flatData.map(entry => entry["Total Count"]);
+            const conversion = flatData.map(entry => entry["Customer_Conversion"]);
             
             const visitorTrendChartOptions = { ...commonChartOptions, chart: { ...commonChartOptions.chart, type: 'line'},
-                series: [{ name: 'Visitors', data: counts }],
+                series: [{ name: 'Visitors', data: counts }, {name: 'Customers', data: conversion}],
                 xaxis: { categories: dates, title: { text: "Dates" }, labels: { style: { colors: axisLabelColor } } },
-                yaxis: { title: { text: "" }, labels: { style: { colors: axisLabelColor } } },
-                colors: [orangePalette[1]], stroke: { curve: 'smooth' }
+                yaxis: [{ title: { text: "Customer Traffic" }, labels: { style: { colors: axisLabelColor } } }, 
+                {
+                    opposite: true,
+                    title: { text: 'Customers at Checkout' },
+                    labels: { style: { colors: '#10B981' } }
+                }
+            ],
+                colors: [orangePalette[1], '#fd4401ff'], stroke: { curve: 'smooth' }
             };
             // const dwellTimeChartOptions = { ...commonChartOptions, chart: { ...commonChartOptions.chart, type: 'pie'},
             //     labels: dwellTimeData.labels, series: dwellTimeData.series, colors: orangePalette,
@@ -370,7 +360,7 @@
                 plotOptions: { heatmap: { shadeIntensity: 0.5, radius: 2, useFillColorAsStroke: true,
                     colorScale: { ranges: [ { from: 0, to: 0, name: 'No Traffic', color: heatmapColors[0] }, { from: 0, to: 50, name: 'Low Traffic', color: heatmapColors[1] }, { from: 51, to: 100, name: 'Moderate Low Traffic', color: heatmapColors[2] }, { from: 101, to: 150, name: 'Moderate Traffic', color: heatmapColors[3] }, { from: 151, to: 200, name: 'Moderate High', color: heatmapColors[4] }, { from: 200, to: 500, name: 'High Traffic', color: heatmapColors[5] } ] } } }
             };
-
+    
             // --- Render charts only if the element exists ---
             // This prevents errors if you remove a chart from the HTML later
             const renderIfExists = (id, options) => {
@@ -383,6 +373,7 @@
             renderIfExists('visitor-trend-chart', visitorTrendChartOptions);
             renderIfExists('gender-trend-chart', genderChartOptions);
             renderIfExists('weekly-traffic-heatmap', weeklyTrafficHeatmapOptions);
+            // renderIfExists('pos-customer', weeklyPosCustomerOptions)
 
             // Add calls here to render any new charts you add placeholders for
         }
