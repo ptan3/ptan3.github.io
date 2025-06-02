@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Tictag Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111827;
+            /* Slightly lighter than pure black: gray-900 */
+        }
+
+        .sidebar {
+            background-color: #000000;
+            /* Black sidebar */
+            color: #D1D5DB;
+            /* gray-300 */
+        }
+
+        .sidebar-link {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            border-left: 4px solid transparent;
+            transition: all 0.2s ease-in-out;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .sidebar-link:hover {
+            background-color: #1f2937;
+            /* gray-800 */
+            color: #ffffff;
+            /* white */
+            border-left-color: #6B7280;
+            /* gray-500 */
+        }
+
+        .sidebar-link.active {
+            background-color: #1f2937;
+            /* gray-800 */
+            color: #F97316;
+            /* orange-500 */
+            border-left-color: #F97316;
+            /* orange-500 */
+            font-weight: 600;
+        }
+
+        .main-content {
+            background-color: #111827;
+            /* gray-900 */
+            color: #E5E7EB;
+            /* gray-200 default text */
+        }
+
+        .card {
+            background-color: #ffffff;
+            /* White cards */
+            color: #1f2937;
+            /* gray-800 card text */
+            border-radius: 0.5rem;
+            /* No shadow needed as much on dark bg, but keep subtle one */
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #F97316;
+            /* orange-500 */
+        }
+
+        .metric-label {
+            font-size: 0.9rem;
+            color: #4b5563;
+            /* gray-600 */
+            margin-bottom: 0.25rem;
+        }
+
+        .chart-container {
+            width: 100%;
+            min-height: 300px;
+            max-height: 1000px;
+        }
+
+        /* Ensure chart text is visible on light card background */
+        .apexcharts-tooltip-title,
+        .apexcharts-tooltip-text,
+        .apexcharts-xaxis-label,
+        .apexcharts-yaxis-label,
+        .apexcharts-title-text,
+        .apexcharts-legend-text {
+            fill: #374151 !important;
+            /* gray-700 */
+            font-family: 'Inter', sans-serif !important;
+        }
+
+        /* Hide inactive content sections */
+        .content-section {
+            display: none;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+    </style>
+</head>
+
+<body class="flex h-screen">
+    <aside class="sidebar w-64 flex-shrink-0 overflow-y-auto">
+        <div class="p-4 text-center border-b border-gray-700">
+            <a href="index.html">
+                <img src="660e84f012addc9a0d34bf14_tictag_mark_red.png"
+                     style="max-width:20%; display: block; margin: 0 auto;" alt="Tictag Logo">
+              </a>              
+            <h1 class="text-xl font-semibold text-white">Tictag</h1>
+            <p class="text-xs text-gray-400">Tagteam Technologies</p>
+        </div>
+        <nav class="mt-4">
+            <a class="sidebar-link active" data-target="overview">Overview</a>
+            <a class="sidebar-link" data-target="heatmaps">Peak Day Analysis</a>
+            <a class="sidebar-link" data-target="zones">Zone Analysis</a>
+            <hr class="border-gray-700 my-4" />
+        </nav>
+    </aside>
+    <main class="main-content flex-1 overflow-y-auto p-6 md:p-8 lg:p-10">
+        <div class="content-section active" id="content-overview">
+            <h2 class="text-2xl font-semibold text-white mb-6">Dashboard Overview</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 mb-8">
+                <div class="card">
+                    <div class="metric-label">Total Visitors Today</div>
+                    <div class="metric-value">838</div>
+                    <p class="text-sm text-gray-500 mt-2">+40.84% vs yesterday</p>
+                </div>
+
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div class="card">
+                    <h3 class="text-lg font-semibold mb-4 text-gray-800">Visitor Trend</h3>
+                    <div class="chart-container" id="visitor-trend-chart" style="height: 400px;"></div>
+                </div>
+                <div class="card">
+                    <h3 class="text-lg font-semibold mb-4 text-gray-800">Gender Distribution</h3>
+                    <div class="chart-container" id="gender-trend-chart"></div>
+                </div>
+            </div>
+        </div>
+        <div class="content-section" id="content-trends">
+            <h2 class="text-2xl font-semibold text-white mb-6">Visitor Trends</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-1 gap-6 mb-8">
+                <div class="card">
+                    <h3 class="text-lg font-semibold mb-4 text-gray-800">Peak Hours Analysis (Average Weekday)</h3>
+                    <div class="chart-container" id="peak-hours-chart"></div>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+                <div class="card">
+                    <h3 class="text-lg font-semibold mb-4 text-gray-800">Daily Visitor Comparison</h3>
+                    <p class="text-gray-600">Placeholder: Chart comparing daily visitors over the last 30 days, or
+                        week-over-week.</p>
+                </div>
+                <div class="card">
+                    <h3 class="text-lg font-semibold mb-4 text-gray-800">Visitor Demographics (Placeholder)</h3>
+                    <p class="text-gray-600">Placeholder: Charts showing age/gender distribution if available from video
+                        analytics.</p>
+                </div>
+            </div>
+        </div>
+        <div class="content-section" id="content-heatmaps">
+            <h2 class="text-2xl font-semibold text-white mb-6">Peak Day Analysis</h2>
+            <div class="grid grid-cols-1 gap-6 mb-8">
+                <div class="card">
+                    <h3 class="text-lg font-semibold mb-4 text-gray-800">Peak Day Analysis</h3>
+                    <div class="chart-container" id="weekly-traffic-heatmap"></div>
+                </div>
+            </div>
+        </div>
+        <div class="content-section" id="content-zones">
+            <h2 class="text-2xl font-semibold text-white mb-6">Zone Analysis</h2>
+            <div class="card">
+                <h3 class="text-lg font-semibold mb-4 text-gray-800">Heatmap of zones </h3>
+                <!-- Week 51 -->
+                <div style="justify-content: center;">
+                    <h3>15 December 2024 - 21 December 2024</h3>
+                </div>
+                <div
+                    style="display: flex; width: 100%; justify-content: center; padding-bottom: 20px; padding-top: 10px;">
+                    <img src="epitex-heatmap/cam2-combined-year-2024-week-51.jpg" style="width: 50%; height: auto;">
+                    <img src="epitex-heatmap/cam4-combined-year-2024-week-51.jpg" style="width: 50%; height: auto;">
+                </div>
+                <div style="justify-content: center;">
+                    <h3>21 December 2024 - 28 December 2024</h3>
+                </div>
+                <!-- Week 52 -->
+                <div
+                    style="display: flex; width: 100%; justify-content: center; padding-bottom: 20px; padding-top: 10px;">
+                    <img src="epitex-heatmap/cam2-combined-year-2024-week-52.jpg" style="width: 50%; height: auto;">
+                    <img src="epitex-heatmap/cam4-combined-year-2024-week-52.jpg" style="width: 50%; height: auto;">
+                </div>
+                <div style="justify-content: center;">
+                    <h3>29 December 2024 - 4 January 2025</h3>
+                </div>
+                <!-- Week 1 -->
+                <div
+                    style="display: flex; width: 100%; justify-content: center; padding-bottom: 20px; padding-top: 10px;">
+                    <img src="epitex-heatmap/cam2-combined-year-2025-week-1.jpg" style="width: 50%; height: auto;">
+                    <img src="epitex-heatmap/cam4-combined-year-2025-week-1.jpg" style="width: 50%; height: auto;">
+                </div>
+                <div style="justify-content: center;">
+                    <h3>5 January 2024 - 11 January 2025</h3>
+                </div>
+                <!-- Week 2 -->
+                <div
+                    style="display: flex; width: 100%; justify-content: center; padding-bottom: 20px; padding-top: 10px;">
+                    <img src="epitex-heatmap/cam2-combined-year-2025-week-2.jpg" style="width: 50%; height: auto;">
+                    <img src="epitex-heatmap/cam4-combined-year-2025-week-2.jpg" style="width: 50%; height: auto;">
+                </div>
+                <div style="justify-content: center;">
+                    <h3>12 January 2024 - 18 January 2025</h3>
+                </div>
+                <!-- Week 3 -->
+                <div
+                    style="display: flex; width: 100%; justify-content: center; padding-bottom: 20px; padding-top: 10px;">
+                    <img src="epitex-heatmap/cam2-combined-year-2025-week-3.jpg" style="width: 50%; height: auto;">
+                    <img src="epitex-heatmap/cam4-combined-year-2025-week-3.jpg" style="width: 50%; height: auto;">
+                </div>
+            </div>
+            <div class="content-section" id="content-settings">
+                <h2 class="text-2xl font-semibold text-white mb-6">Settings</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="card">
+                        <h3 class="text-lg font-semibold mb-4 text-gray-800">User Profile</h3>
+                        <p class="text-gray-600">Manage your account details, password, and notification preferences.
+                        </p>
+                        <button
+                            class="mt-4 bg-orange-500 hover:bg-orange-600 text-white text-sm font-medium py-2 px-4 rounded">Edit
+                            Profile</button>
+                    </div>
+                    <div class="card">
+                        <h3 class="text-lg font-semibold mb-4 text-gray-800">Camera &amp; Zone Configuration</h3>
+                        <p class="text-gray-600">Define store zones, manage camera feeds, and set analytic parameters.
+                        </p>
+                        <button
+                            class="mt-4 bg-gray-700 hover:bg-gray-600 text-white text-sm font-medium py-2 px-4 rounded">Manage
+                            Setup</button>
+                    </div>
+                    <div class="card">
+                        <h3 class="text-lg font-semibold mb-4 text-gray-800">Data Management</h3>
+                        <p class="text-gray-600">Configure data retention policies and export analytic reports.</p>
+                        <button
+                            class="mt-4 bg-gray-700 hover:bg-gray-600 text-white text-sm font-medium py-2 px-4 rounded">Data
+                            Settings</button>
+                    </div>
+                </div>
+            </div>
+    </main>
+    <script>
+        // --- Sidebar Navigation Logic ---
+        document.addEventListener('DOMContentLoaded', function () {
+            const sidebarLinks = document.querySelectorAll('.sidebar-link[data-target]');
+            const contentSections = document.querySelectorAll('.content-section');
+
+            sidebarLinks.forEach(link => {
+                link.addEventListener('click', (event) => {
+                    event.preventDefault(); // Prevent default anchor behavior if any
+
+                    // Get target content ID from data attribute
+                    const targetId = 'content-' + link.getAttribute('data-target');
+
+                    // Update active link styling
+                    sidebarLinks.forEach(l => l.classList.remove('active'));
+                    link.classList.add('active');
+
+                    // Show target content, hide others
+                    contentSections.forEach(section => {
+                        if (section.id === targetId) {
+                            section.classList.add('active');
+                        } else {
+                            section.classList.remove('active');
+                        }
+                    });
+
+                    // Optional: Re-initialize charts if they are complex or need fresh data on view
+                    // For this demo, rendering all once at the start is sufficient.
+                });
+            });
+
+            renderCharts(); // Call function to render all charts
+
+        });
+
+
+        // --- Chart Data and Options (Using Theme Colors) ---
+        function renderCharts() {
+            const aggregatedDayData = [[{ 'Range': '15-Dec to 21-Dec', 'Camera': 12, 'Total Count': 10709, 'Total Males': 5977, 'Total Females': 4275, 'Unknown Gender': 457, 'Total Kids': 394, 'Total Teenagers': 5469, 'Total Adults': 4110, 'Total Older Adults': 362, 'Total Unknown Ages': 374, 'Total Chinese': 10039, 'Total Indian': 57, 'Total Malay': 143, 'Total Others': 470, 'Customer_Conversion': 211 }], [{ 'Range': '22-Dec to 28-Dec', 'Camera': 14, 'Total Count': 13940, 'Total Males': 7704, 'Total Females': 5653, 'Unknown Gender': 583, 'Total Kids': 408, 'Total Teenagers': 7415, 'Total Adults': 5252, 'Total Older Adults': 306, 'Total Unknown Ages': 559, 'Total Chinese': 12914, 'Total Indian': 209, 'Total Malay': 220, 'Total Others': 597, 'Customer_Conversion': 232 }], [{ 'Range': '29-Dec to 04-Jan', 'Camera': 14, 'Total Count': 12849, 'Total Males': 7002, 'Total Females': 5361, 'Unknown Gender': 486, 'Total Kids': 412, 'Total Teenagers': 7033, 'Total Adults': 4603, 'Total Older Adults': 319, 'Total Unknown Ages': 482, 'Total Chinese': 12001, 'Total Indian': 148, 'Total Malay': 194, 'Total Others': 506, 'Customer_Conversion': 277 }], [{ 'Range': '05-Jan to 11-Jan', 'Camera': 14, 'Total Count': 9173, 'Total Males': 5149, 'Total Females': 3688, 'Unknown Gender': 336, 'Total Kids': 348, 'Total Teenagers': 4668, 'Total Adults': 3584, 'Total Older Adults': 238, 'Total Unknown Ages': 335, 'Total Chinese': 8601, 'Total Indian': 56, 'Total Malay': 152, 'Total Others': 364, 'Customer_Conversion': 226 }], [{ 'Range': '12-Jan to 17-Jan', 'Camera': 12, 'Total Count': 6408, 'Total Males': 3350, 'Total Females': 2848, 'Unknown Gender': 210, 'Total Kids': 167, 'Total Teenagers': 3079, 'Total Adults': 2771, 'Total Older Adults': 182, 'Total Unknown Ages': 209, 'Total Chinese': 6051, 'Total Indian': 40, 'Total Malay': 100, 'Total Others': 217, 'Customer_Conversion': 159 }]];
+
+            // Theme Colors
+            const orangePalette = ['#FB923C', '#F97316', '#EA580C', '#C2410C']; // orange-400, 500, 600, 700
+            const heatmapColors = ['#FFF7ED', '#FED7AA', '#FDBA74', '#FB923C', '#F97316', '#EA580C']; // Oranges from light to dark
+
+            // Chart configurations (ensure element IDs match HTML)
+            const commonChartOptions = {
+                chart: { background: 'transparent', toolbar: { show: false }, height: '100%' },
+                tooltip: { theme: 'light' } // Use light tooltips on white cards
+            };
+            const axisLabelColor = '#4b5563'; // gray-600
+
+            // Assume each group in aggregatedDayData has just one row per date
+            const flatData = aggregatedDayData.map(group => group[0]); // flatten to 1D array of objects
+
+            const dates = flatData.map(entry => entry['Range']);
+            const counts = flatData.map(entry => entry["Total Count"]);
+            const conversion = flatData.map(entry => entry["Customer_Conversion"]);
+
+            const visitorTrendChartOptions = {
+                ...commonChartOptions, chart: { ...commonChartOptions.chart, type: 'line' },
+                series: [{ name: 'Visitors', data: counts }, { name: 'Customers', data: conversion }],
+                xaxis: { categories: dates, title: { text: "Dates" }, labels: { style: { colors: axisLabelColor } } },
+                yaxis: [{ title: { text: "Customer Traffic" }, labels: { style: { colors: axisLabelColor } } },
+                {
+                    opposite: true,
+                    title: { text: 'Customers at Checkout' },
+                    labels: { style: { colors: '#10B981' } }
+                }
+                ],
+                colors: [orangePalette[1], '#fd4401ff'], stroke: { curve: 'smooth' }
+            };
+
+            const totalMales = flatData.map(entry => entry["Total Males"]);
+            const totalFemales = flatData.map(entry => entry["Total Females"]);
+
+            const malePercentages = flatData.map(entry => {
+                const total = entry["Total Males"] + entry["Total Females"];
+                return total ? Math.round((entry["Total Males"] / total) * 100) : 0;
+            });
+
+            const femalePercentages = flatData.map(entry => {
+                const total = entry["Total Males"] + entry["Total Females"];
+                return total ? Math.round((entry["Total Females"] / total) * 100) : 0;
+            });
+
+            const genderChartOptions = {
+                ...commonChartOptions, chart: {
+                    ...commonChartOptions.chart, type: 'bar',
+                    stacked: false
+                }, dataLabels: { enabled: false },
+                series: [
+                    { name: 'Males (%)', data: malePercentages },
+                    { name: 'Females (%)', data: femalePercentages }
+                ],
+                xaxis: { categories: dates, labels: { style: { colors: axisLabelColor } } },
+                yaxis: { title: { text: "Percentage of Visitors" }, labels: { style: { colors: axisLabelColor } } },
+                colors: ["#0047ab", "#FF13F0"], plotOptions: { bar: { columnWidth: '60%' } },
+            };
+            const weeklyTrafficHeatmapOptions = {
+                ...commonChartOptions, chart: { ...commonChartOptions.chart, type: 'heatmap', height: '200%' },
+                dataLabels: {
+                    enabled: false
+                },
+                xaxis: {
+                    title: { text: 'Hour of Day' }
+                },
+                yaxis: {
+                    title: { text: 'Date' }
+                },
+                series: [{ 'name': '2024-12-15', 'data': [{ 'x': '0', 'y': 290 }, { 'x': '1', 'y': 240 }, { 'x': '2', 'y': 207 }, { 'x': '3', 'y': 306 }, { 'x': '4', 'y': 232 }, { 'x': '5', 'y': 274 }, { 'x': '6', 'y': 182 }, { 'x': '7', 'y': 223 }, { 'x': '8', 'y': 12 }] }, { 'name': '2024-12-17', 'data': [{ 'x': '0', 'y': 100 }, { 'x': '1', 'y': 210 }, { 'x': '2', 'y': 205 }, { 'x': '3', 'y': 157 }, { 'x': '4', 'y': 218 }, { 'x': '5', 'y': 214 }, { 'x': '6', 'y': 206 }] }, { 'name': '2024-12-18', 'data': [{ 'x': '0', 'y': 116 }, { 'x': '1', 'y': 206 }, { 'x': '2', 'y': 190 }, { 'x': '3', 'y': 117 }, { 'x': '4', 'y': 358 }, { 'x': '5', 'y': 306 }, { 'x': '6', 'y': 209 }, { 'x': '7', 'y': 85 }] }, { 'name': '2024-12-19', 'data': [{ 'x': '0', 'y': 78 }, { 'x': '1', 'y': 89 }, { 'x': '2', 'y': 255 }, { 'x': '3', 'y': 175 }, { 'x': '4', 'y': 170 }, { 'x': '5', 'y': 150 }, { 'x': '6', 'y': 127 }, { 'x': '7', 'y': 231 }, { 'x': '8', 'y': 235 }, { 'x': '9', 'y': 43 }] }, { 'name': '2024-12-20', 'data': [{ 'x': '0', 'y': 122 }, { 'x': '1', 'y': 189 }, { 'x': '2', 'y': 311 }, { 'x': '3', 'y': 239 }, { 'x': '4', 'y': 167 }, { 'x': '5', 'y': 203 }, { 'x': '6', 'y': 268 }, { 'x': '7', 'y': 318 }, { 'x': '8', 'y': 299 }, { 'x': '9', 'y': 17 }] }, { 'name': '2024-12-21', 'data': [{ 'x': '0', 'y': 240 }, { 'x': '1', 'y': 145 }, { 'x': '2', 'y': 196 }, { 'x': '3', 'y': 370 }, { 'x': '4', 'y': 269 }, { 'x': '5', 'y': 335 }, { 'x': '6', 'y': 263 }, { 'x': '7', 'y': 241 }, { 'x': '8', 'y': 101 }] }, { 'name': '2024-12-22', 'data': [{ 'x': '0', 'y': 185 }, { 'x': '1', 'y': 230 }, { 'x': '2', 'y': 285 }, { 'x': '3', 'y': 221 }, { 'x': '4', 'y': 374 }, { 'x': '5', 'y': 186 }, { 'x': '6', 'y': 162 }] }, { 'name': '2024-12-23', 'data': [{ 'x': '0', 'y': 166 }, { 'x': '1', 'y': 173 }, { 'x': '2', 'y': 303 }, { 'x': '3', 'y': 370 }, { 'x': '4', 'y': 288 }, { 'x': '5', 'y': 436 }, { 'x': '6', 'y': 206 }, { 'x': '7', 'y': 255 }, { 'x': '8', 'y': 385 }, { 'x': '9', 'y': 356 }, { 'x': '10', 'y': 123 }] }, { 'name': '2024-12-24', 'data': [{ 'x': '0', 'y': 112 }, { 'x': '1', 'y': 168 }, { 'x': '2', 'y': 157 }, { 'x': '3', 'y': 180 }, { 'x': '4', 'y': 278 }, { 'x': '5', 'y': 285 }, { 'x': '6', 'y': 255 }, { 'x': '7', 'y': 272 }, { 'x': '8', 'y': 185 }] }, { 'name': '2024-12-25', 'data': [{ 'x': '0', 'y': 181 }, { 'x': '1', 'y': 257 }, { 'x': '2', 'y': 235 }, { 'x': '3', 'y': 189 }, { 'x': '4', 'y': 247 }, { 'x': '5', 'y': 413 }, { 'x': '6', 'y': 249 }, { 'x': '7', 'y': 172 }, { 'x': '8', 'y': 199 }] }, { 'name': '2024-12-26', 'data': [{ 'x': '0', 'y': 165 }, { 'x': '1', 'y': 202 }, { 'x': '2', 'y': 245 }, { 'x': '3', 'y': 212 }, { 'x': '4', 'y': 197 }, { 'x': '5', 'y': 252 }, { 'x': '6', 'y': 195 }, { 'x': '7', 'y': 65 }] }, { 'name': '2024-12-27', 'data': [{ 'x': '0', 'y': 231 }, { 'x': '1', 'y': 179 }, { 'x': '2', 'y': 170 }, { 'x': '3', 'y': 214 }, { 'x': '4', 'y': 201 }, { 'x': '5', 'y': 200 }, { 'x': '6', 'y': 197 }, { 'x': '7', 'y': 211 }, { 'x': '8', 'y': 192 }, { 'x': '9', 'y': 46 }] }, { 'name': '2024-12-28', 'data': [{ 'x': '0', 'y': 127 }, { 'x': '1', 'y': 115 }, { 'x': '2', 'y': 280 }, { 'x': '3', 'y': 227 }, { 'x': '4', 'y': 163 }, { 'x': '5', 'y': 245 }, { 'x': '6', 'y': 169 }, { 'x': '7', 'y': 336 }, { 'x': '8', 'y': 158 }, { 'x': '9', 'y': 8 }] }, { 'name': '2024-12-29', 'data': [{ 'x': '0', 'y': 158 }, { 'x': '1', 'y': 225 }, { 'x': '2', 'y': 314 }, { 'x': '3', 'y': 430 }, { 'x': '4', 'y': 330 }, { 'x': '5', 'y': 335 }, { 'x': '6', 'y': 200 }, { 'x': '7', 'y': 280 }, { 'x': '8', 'y': 68 }] }, { 'name': '2024-12-30', 'data': [{ 'x': '0', 'y': 205 }, { 'x': '1', 'y': 261 }, { 'x': '2', 'y': 305 }, { 'x': '3', 'y': 386 }, { 'x': '4', 'y': 461 }, { 'x': '5', 'y': 383 }, { 'x': '6', 'y': 356 }, { 'x': '7', 'y': 9 }] }, { 'name': '2024-12-31', 'data': [{ 'x': '0', 'y': 116 }, { 'x': '1', 'y': 176 }, { 'x': '2', 'y': 205 }, { 'x': '3', 'y': 309 }, { 'x': '4', 'y': 212 }, { 'x': '5', 'y': 248 }, { 'x': '6', 'y': 197 }, { 'x': '7', 'y': 178 }] }, { 'name': '2025-01-01', 'data': [{ 'x': '0', 'y': 102 }, { 'x': '1', 'y': 382 }, { 'x': '2', 'y': 218 }, { 'x': '3', 'y': 320 }, { 'x': '4', 'y': 198 }, { 'x': '5', 'y': 276 }, { 'x': '6', 'y': 218 }, { 'x': '7', 'y': 158 }] }, { 'name': '2025-01-02', 'data': [{ 'x': '0', 'y': 75 }, { 'x': '1', 'y': 139 }, { 'x': '2', 'y': 157 }, { 'x': '3', 'y': 186 }, { 'x': '4', 'y': 196 }, { 'x': '5', 'y': 146 }, { 'x': '6', 'y': 368 }, { 'x': '7', 'y': 196 }] }, { 'name': '2025-01-03', 'data': [{ 'x': '0', 'y': 97 }, { 'x': '1', 'y': 100 }, { 'x': '2', 'y': 190 }, { 'x': '3', 'y': 135 }, { 'x': '4', 'y': 191 }, { 'x': '5', 'y': 189 }, { 'x': '6', 'y': 193 }, { 'x': '7', 'y': 243 }, { 'x': '8', 'y': 140 }] }, { 'name': '2025-01-04', 'data': [{ 'x': '0', 'y': 69 }, { 'x': '1', 'y': 239 }, { 'x': '2', 'y': 297 }, { 'x': '3', 'y': 182 }, { 'x': '4', 'y': 252 }, { 'x': '5', 'y': 198 }, { 'x': '6', 'y': 224 }, { 'x': '7', 'y': 228 }] }, { 'name': '2025-01-05', 'data': [{ 'x': '0', 'y': 155 }, { 'x': '1', 'y': 133 }, { 'x': '2', 'y': 272 }, { 'x': '3', 'y': 358 }, { 'x': '4', 'y': 380 }, { 'x': '5', 'y': 281 }, { 'x': '6', 'y': 89 }, { 'x': '7', 'y': 181 }, { 'x': '8', 'y': 104 }] }, { 'name': '2025-01-06', 'data': [{ 'x': '0', 'y': 93 }, { 'x': '1', 'y': 142 }, { 'x': '2', 'y': 175 }, { 'x': '3', 'y': 145 }, { 'x': '4', 'y': 127 }, { 'x': '5', 'y': 217 }, { 'x': '6', 'y': 214 }, { 'x': '7', 'y': 5 }] }, { 'name': '2025-01-07', 'data': [{ 'x': '0', 'y': 116 }, { 'x': '1', 'y': 139 }, { 'x': '2', 'y': 86 }, { 'x': '3', 'y': 167 }, { 'x': '4', 'y': 183 }, { 'x': '5', 'y': 89 }, { 'x': '6', 'y': 177 }, { 'x': '7', 'y': 65 }] }, { 'name': '2025-01-08', 'data': [{ 'x': '0', 'y': 83 }, { 'x': '1', 'y': 127 }, { 'x': '2', 'y': 125 }, { 'x': '3', 'y': 129 }, { 'x': '4', 'y': 111 }, { 'x': '5', 'y': 151 }, { 'x': '6', 'y': 153 }, { 'x': '7', 'y': 83 }] }, { 'name': '2025-01-09', 'data': [{ 'x': '0', 'y': 50 }, { 'x': '1', 'y': 135 }, { 'x': '2', 'y': 122 }, { 'x': '3', 'y': 114 }, { 'x': '4', 'y': 93 }, { 'x': '5', 'y': 165 }, { 'x': '6', 'y': 42 }] }, { 'name': '2025-01-10', 'data': [{ 'x': '0', 'y': 95 }, { 'x': '1', 'y': 174 }, { 'x': '2', 'y': 119 }, { 'x': '3', 'y': 138 }, { 'x': '4', 'y': 145 }, { 'x': '5', 'y': 179 }, { 'x': '6', 'y': 209 }, { 'x': '7', 'y': 141 }] }, { 'name': '2025-01-11', 'data': [{ 'x': '0', 'y': 157 }, { 'x': '1', 'y': 255 }, { 'x': '2', 'y': 238 }, { 'x': '3', 'y': 284 }, { 'x': '4', 'y': 230 }, { 'x': '5', 'y': 363 }, { 'x': '6', 'y': 243 }, { 'x': '7', 'y': 230 }, { 'x': '8', 'y': 197 }] }, { 'name': '2025-01-12', 'data': [{ 'x': '0', 'y': 161 }, { 'x': '1', 'y': 176 }, { 'x': '2', 'y': 333 }, { 'x': '3', 'y': 186 }, { 'x': '4', 'y': 225 }, { 'x': '5', 'y': 325 }, { 'x': '6', 'y': 232 }, { 'x': '7', 'y': 169 }] }, { 'name': '2025-01-13', 'data': [{ 'x': '0', 'y': 58 }, { 'x': '1', 'y': 147 }, { 'x': '2', 'y': 153 }, { 'x': '3', 'y': 84 }, { 'x': '4', 'y': 80 }, { 'x': '5', 'y': 178 }, { 'x': '6', 'y': 113 }, { 'x': '7', 'y': 5 }] }, { 'name': '2025-01-14', 'data': [{ 'x': '0', 'y': 78 }, { 'x': '1', 'y': 167 }, { 'x': '2', 'y': 122 }, { 'x': '3', 'y': 147 }, { 'x': '4', 'y': 211 }, { 'x': '5', 'y': 214 }, { 'x': '6', 'y': 116 }, { 'x': '7', 'y': 61 }] }, { 'name': '2025-01-15', 'data': [{ 'x': '0', 'y': 131 }, { 'x': '1', 'y': 186 }, { 'x': '2', 'y': 117 }, { 'x': '3', 'y': 183 }, { 'x': '4', 'y': 167 }, { 'x': '5', 'y': 102 }, { 'x': '6', 'y': 222 }, { 'x': '7', 'y': 126 }] }, { 'name': '2025-01-16', 'data': [{ 'x': '0', 'y': 54 }, { 'x': '1', 'y': 75 }, { 'x': '2', 'y': 99 }, { 'x': '3', 'y': 118 }, { 'x': '4', 'y': 166 }, { 'x': '5', 'y': 83 }] }, { 'name': '2025-01-17', 'data': [{ 'x': '0', 'y': 65 }, { 'x': '1', 'y': 122 }, { 'x': '2', 'y': 137 }, { 'x': '3', 'y': 160 }, { 'x': '4', 'y': 133 }, { 'x': '5', 'y': 221 }] }],
+                colors: [heatmapColors[4]],
+                plotOptions: {
+                    heatmap: {
+                        shadeIntensity: 0.5, radius: 2, useFillColorAsStroke: true,
+                        colorScale: { ranges: [{ from: 0, to: 0, name: 'No Traffic', color: heatmapColors[0] }, { from: 0, to: 50, name: 'Low Traffic', color: heatmapColors[1] }, { from: 51, to: 100, name: 'Moderate Low Traffic', color: heatmapColors[2] }, { from: 101, to: 150, name: 'Moderate Traffic', color: heatmapColors[3] }, { from: 151, to: 200, name: 'Moderate High', color: heatmapColors[4] }, { from: 200, to: 500, name: 'High Traffic', color: heatmapColors[5] }] }
+                    }
+                }
+            };
+
+            // --- Render charts only if the element exists ---
+            // This prevents errors if you remove a chart from the HTML later
+            const renderIfExists = (id, options) => {
+                const element = document.getElementById(id);
+                if (element) {
+                    new ApexCharts(element, options).render();
+                }
+            };
+
+            renderIfExists('visitor-trend-chart', visitorTrendChartOptions);
+            renderIfExists('gender-trend-chart', genderChartOptions);
+            renderIfExists('weekly-traffic-heatmap', weeklyTrafficHeatmapOptions);
+        }
+
+        let currentIndex = 0;
+
+        function moveSlide(direction) {
+            const track = document.getElementById('carouselTrack');
+            const imagesPerView = 2;
+            const totalImages = track.children.length;
+            const totalViews = Math.ceil(totalImages / imagesPerView);
+
+            currentIndex = (currentIndex + direction + totalViews) % totalViews;
+            track.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+
+    </script>
+</body>
+
+</html>
